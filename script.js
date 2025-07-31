@@ -1,3 +1,6 @@
+// This is a simple To-Do List application using vanilla JavaScript.
+// The code allows users to add items, cross them out, delete them, and reorder the list.
+/* 
 
 function newItem(){
 
@@ -35,64 +38,43 @@ function newItem(){
  // 4. Reordering the items: 
    $('#list').sortable();
 
-}
+} */
 
- 
+function newItem() {
+  let inputValue = $("#input").val().trim();
 
-
-
-
-
-
-
-// If you get stuck, you can look below for the jQuery code. However, try yourself to convert the vanilla JS code provided to jQuery first.
-
-
-
-
-
-
-
-
-  /*
-// jQuery Code
-//1. Adding a new item to the list:
-
-  let li = $('<li></li>');
-  let inputValue = $('#input').val();
-  li.append(inputValue);
-
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    $('#list').append(li);
+  // Se l'input è vuoto, non fare nulla (e non mostrare alert)
+  if (inputValue === "") {
+    return;
   }
-//2. Crossing an item out:
-  function crossOut() {
-		li.toggleClass("strike");
-	}
 
-	li.on("dblclick", function crossOut() {
-		li.toggleClass("strike");
-	});
-//3. Adding a delete button
-  let crossOutButton = $('<crossOutButton></crossOutButton>');
-  crossOutButton.append(document.createTextNode('X'));
+  let li = $("<li></li>").text(inputValue);
+
+  $("#list").append(li);
+  $("#input").val(""); // pulisce il campo
+
+  // Barrare un item con doppio click
+  li.on("dblclick", function () {
+    $(this).toggleClass("strike");
+  });
+
+  // Aggiungere il pulsante "X" per eliminare
+  let crossOutButton = $("<button>X</button>").addClass("delete-button");
   li.append(crossOutButton);
 
-//   crossOutButton.on("click", deleteListItem);
-//   function deleteListItem(){
-// 		li.addClass("delete")
-// 	}
-   $('#list').sortable();
-*/
+  crossOutButton.on("click", function () {
+    li.remove();
+  });
 
+  // Lista ordinabile
+  $("#list").sortable();
+}
 
+// Aggiungi elemento con click sul bottone
+$("#button").on("click", newItem);
 
-
-
-
-
-
-
-
+// Aggiungi elemento con tasto "invio"
+$("form").on("submit", function (e) {
+  e.preventDefault(); // evita reload della pagina
+  newItem();
+});

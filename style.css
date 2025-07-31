@@ -48,9 +48,9 @@ li:hover{
   cursor: pointer;
  }
 
-.delete {
+/* .delete {
 	display: none;
-}
+} */
 
 li > crossOutButton {
 	background: none;
@@ -58,4 +58,13 @@ li > crossOutButton {
 	float: right;
 	color: #025f70;
 	font-weight: 800;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  float: right;
+  color: #ff0000;
+  font-weight: 800;
+  cursor: pointer;
 }
