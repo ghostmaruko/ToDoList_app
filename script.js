@@ -45,6 +45,7 @@ function newItem() {
 
   // Se l'input è vuoto, non fare nulla (e non mostrare alert)
   if (inputValue === "") {
+    alert("You must write something!");
     return;
   }
 
